@@ -1,57 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Botpress - MediBot</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MediBot – Virtual Health Assistant</title>
 
-    <script src="https://cdn.botpress.cloud/webchat/v2.4/inject.js"></script>
-    <style>
-        #webchat .bpWebchat {
-        position: unset;
-        width: 100%;
-        height: 100%;
-        max-height: 100%;
-        max-width: 100%;
-        }
-    
-        #webchat .bpFab {
-        display: none;
-        }
-    </style>
+  <!-- Botpress Webchat Script -->
+  <script src="https://cdn.botpress.cloud/webchat/v2.4/inject.js"></script>
+
+  <!-- Custom Styles -->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #f4f8fb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .chat-container {
+      width: 500px;
+      height: 600px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat-header {
+      background-color: #5eb1ef;
+      color: white;
+      padding: 16px;
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    #webchat {
+      flex: 1;
+    }
+
+    /* Botpress Webchat Overrides */
+    #webchat .bpWebchat {
+      position: unset;
+      width: 100%;
+      height: 100%;
+      max-height: 100%;
+      max-width: 100%;
+    }
+
+    #webchat .bpFab {
+      display: none;
+    }
+  </style>
 </head>
 <body>
-    
-    <!-- Put this on your page BEFORE the script below -->
-    <div id="webchat" style="width: 500px; height: 500px;"></div>
+  <div class="chat-container">
+    <div class="chat-header">Welcome to MediBot</div>
+    <div id="webchat"></div>
+  </div>
 
+  <script>
+    window.botpress.on("webchat:ready", () => {
+      window.botpress.open();
+    });
 
-       <!-- In your <body> tag -->
-        <script>
-            window.botpress.on("webchat:ready", () => {
-              window.botpress.open();
-            });
-            window.botpress.init({
-            "botId": "38e151bb-497c-43a2-b275-aab36c80558e",
-            "configuration": {
-              "composerPlaceholder": "",
-              "botName": "MediBot",
-              "botAvatar": "https://files.bpcontent.cloud/2025/04/24/07/20250424074609-1BLO50JY.jpeg",
-              "website": {},
-              "email": {},
-              "phone": {},
-              "termsOfService": {},
-              "privacyPolicy": {},
-              "color": "#5eb1ef",
-              "variant": "soft",
-              "themeMode": "light",
-              "fontFamily": "inter",
-              "radius": 1
-            },
-            "clientId": "ab8d4d63-ccea-4e69-bd5d-b7d85f805856",
-            "selector": "#webchat"
-          });
-          </script>      
-    
+    window.botpress.init({
+      "botId": "38e151bb-497c-43a2-b275-aab36c80558e",
+      "configuration": {
+        "composerPlaceholder": "Describe your symptoms or ask a question...",
+        "botName": "MediBot",
+        "botAvatar": "https://files.bpcontent.cloud/2025/04/24/07/20250424074609-1BLO50JY.jpeg",
+        "color": "#5eb1ef",
+        "variant": "soft",
+        "themeMode": "light",
+        "fontFamily": "Inter",
+        "radius": 1
+      },
+      "clientId": "ab8d4d63-ccea-4e69-bd5d-b7d85f805856",
+      "selector": "#webchat"
+    });
+  </script>
 </body>
 </html>
